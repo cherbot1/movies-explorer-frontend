@@ -2,13 +2,16 @@ import React from 'react';
 import Header from '../Header/Header'
 import './App.css';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <Header/>
-      <Main/>
-
+      <Main
+        exact path = '/'
+      />
+      <Footer />
     </div>
   );
 }

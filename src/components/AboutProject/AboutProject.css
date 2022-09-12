@@ -1,0 +1,101 @@
+.about-project {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 110px 70px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.text-list {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    padding: 70px 0 0 0;
+    width: 100%;
+}
+
+.text-list__item {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+    text-align: start;
+}
+
+.text-list__item:last-child {
+    margin-left: 40px;
+}
+
+.text-list__title {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 0 0 26px 0;
+    padding: 0;
+}
+
+.text-list__text {
+    font-size: 0.875rem;
+    line-height: 1.42;
+    padding: 0;
+    margin: 0;
+}
+
+.visualization {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0;
+    padding: 110px 0 0 0;
+    width: 100%;
+}
+
+.visualization__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 20%;
+    text-align: center;
+}
+
+.visualization__item_grey {
+    width: 80%;
+}
+
+.visualization__graph {
+    background-color: #2BE080;
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visualization__graph_grey {
+    background-color: #F2F2F2;
+}
+
+.visualization__graph-text {
+    font-size: 0.875rem;
+    line-height: 1.21;
+    padding: 0;
+    margin: 0;
+}
+
+.visualization__item-text {
+    font-size: 0.875rem;
+    line-height: 1.21;
+    padding: 0;
+    margin: 14px 0 0 0;
+    color: #A0A0A0;
+}
