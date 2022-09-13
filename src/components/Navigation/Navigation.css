@@ -22,6 +22,60 @@
     font-weight: normal;
 }
 
+.navigation__button_transparent:last-child {
+    margin-right: 0;
+    margin-left: 40px;
+}
+
 .navigation__button:hover {
     opacity: 80%;
+}
+
+.navigation__button:active {
+    font-weight: 500;
+}
+
+.navigation__button_black-text {
+    color: #000;
+    font-size: 0.875rem;
+    line-height: 1.28;
+    padding: 0;
+}
+
+.navigation__button_saved {
+    width: 157px;
+    margin-left: 10px;
+}
+
+.navigation__button_with-icon {
+    max-width: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.navigation__icon-wrapper {
+    margin: 0 0 0 13px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F9F9F9;
+    border-radius: 6px;
+}
+
+.navigation__icon {
+    padding: 0;
+    margin: 0;
+    width: 11px;
+    height: 11px;
+}
+
+.navigation__hidden {
+    display: none;
 }

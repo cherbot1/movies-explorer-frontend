@@ -1,0 +1,15 @@
+.movies-cards {
+    box-sizing: border-box;
+    padding: 70px;
+    margin: 0;
+}
+
+.cards-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
