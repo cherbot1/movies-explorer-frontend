@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
 import './MoviesCard.css';
 import thumbnail from '../../images/thumbnail.png';
-import liked from '../../images/icon-liked.svg'
+import liked from '../../images/icon-liked.svg';
+import del from '../../images/icon-delete.svg';
+import { useLocation } from 'react-router-dom';
 
 function MoviesCard() {
     const title = 'В погоне за Бэнкси';
     const duration = '27 минут';
     const [isLiked, setIsLiked] = useState(false);
+    const location = useLocation();
 
     function likeCard() {
-        setIsLiked(true);
+        setIsLiked(!isLiked);
     }
 
     return (
@@ -32,7 +35,8 @@ function MoviesCard() {
                 className={`card__button ${isLiked ? 'card__button_liked' : ''}`}
                 onClick={likeCard}
             >
-                {isLiked ? <img className={'card__like-icon'} alt={'Галочка'} src={liked}/> : 'Сохранить'}
+                {location.pathname === '/saved-movies' ? <img className={'card__like-icon'} alt={'Крестик'} src={del}/> :
+                    isLiked ? <img className={'card__like-icon'} alt={'Галочка'} src={liked}/> : 'Сохранить'}
             </button>
         </li>
     );

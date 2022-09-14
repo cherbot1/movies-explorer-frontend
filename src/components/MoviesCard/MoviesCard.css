@@ -59,6 +59,7 @@
     width: 100px;
     height: 29px;
     background-color: #F9F9F9;
+    transition: background-color 200ms linear;
     border: none;
     border-radius: 15px;
     display: flex;
@@ -72,6 +73,7 @@
 
 .card__button_liked {
     background-color: #EE3465;
+    transition: background-color 200ms linear;
 }
 
 .card__like-icon {
@@ -79,4 +81,12 @@
     padding: 0;
     width: 10px;
     height: 8px;
+}
+
+.checkbox__label {
+    cursor: pointer;
+}
+
+.card__button:hover {
+    opacity: 80%;
 }

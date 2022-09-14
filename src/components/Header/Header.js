@@ -1,18 +1,21 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import logo from '../../images/logo.png';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
 
-function Header ({loggedIn, login, logOut}) {
+function Header ({loggedIn, login}) {
+    const location = useLocation();
+
     return (
-        <header className={`header ${loggedIn ? 'header_white' : ''}`}>
-            <a href={'/'} className="header__link">
+        <header className={`header ${location.pathname === '/' ? '' : 'header_white'}`}>
+            <Link to='/'>
                 <img className="header__logo" src={logo} alt="Логотип"/>
-            </a>
+            </Link>
             <Navigation
                 login={login}
                 loggedIn={loggedIn}
-                logOut={logOut}
             />
         </header>
     )

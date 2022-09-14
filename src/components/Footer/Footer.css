@@ -44,6 +44,11 @@
     padding: 0;
 }
 
+.footer__link-item {
+    padding: 0;
+    line-height: 0;
+}
+
 .footer__link {
     text-decoration: none;
     color: #000;

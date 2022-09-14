@@ -59,3 +59,7 @@
     width: 18px;
     height: 18px;
 }
+
+.search-form__search-button:hover {
+    opacity: 80%;
+}
