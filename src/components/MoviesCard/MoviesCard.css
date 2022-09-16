@@ -90,3 +90,42 @@
 .card__button:hover {
     opacity: 80%;
 }
+
+@media screen and (max-width: 1000px) {
+    .card {
+        max-width: 342px;
+    }
+
+    .card__thumbnail {
+        max-height: 190px;
+    }
+}
+
+
+@media screen and (max-width: 460px) {
+    .card {
+        max-width: 300px;
+    }
+
+    .card__description {
+        padding: 20px 15px 15px 15px
+    }
+
+    .card__title {
+        font-size: 0.75rem;
+        line-height: 1.25;
+    }
+
+    .card__duration {
+        font-size: 0.625rem;
+        line-height: 1.8;
+    }
+
+    .card__thumbnail {
+        max-height: 168px;
+    }
+
+    .card__button {
+        margin: 14px 0;
+    }
+}

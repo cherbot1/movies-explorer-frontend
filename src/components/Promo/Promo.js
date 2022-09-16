@@ -2,7 +2,11 @@ import React from 'react';
 import './Promo.css';
 import planet from '../../images/planet.svg'
 
-function Promo () {
+function Promo ({aboutRef}) {
+    function scrollPage() {
+        aboutRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     return (
             <section className={"promo"}>
                 <div className={"promo__description"}>
@@ -14,6 +18,7 @@ function Promo () {
                             type="button"
                             aria-label="Подробнее"
                             title="Подробнее"
+                            onClick={scrollPage}
                         >
                             Узнать больше
                         </button>

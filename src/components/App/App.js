@@ -9,6 +9,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound'
 
 function App() {
     const [loggedIn, setIsLoggedIn] = React.useState(false);
@@ -57,9 +58,13 @@ function App() {
                 </Route>
 
                 <Route path='/profile'>
+                    <Header
+                        loggedIn={loggedIn}
+                    />
                     <Profile
                         logOut={logOut}
-                    />
+                    >
+                    </ Profile>
                 </Route>
 
                 <Route path='/signup'>
@@ -72,6 +77,9 @@ function App() {
                     <Login
                         login={login}
                     />
+                </Route>
+                <Route path='/*'>
+                    <NotFound />
                 </Route>
             </Switch>
 

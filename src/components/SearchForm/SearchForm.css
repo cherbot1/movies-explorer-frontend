@@ -29,6 +29,8 @@
     border: none;
     background-color: #F9F9F9;
     box-sizing: border-box;
+    font-size: 0.875rem;
+    line-height: 1.28;
 }
 
 .search-form__input:focus {
@@ -62,4 +64,21 @@
 
 .search-form__search-button:hover {
     opacity: 80%;
+}
+
+@media screen and (max-width: 1000px) {
+    .search-form {
+        padding: 77px 30px 10px 30px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .search-form {
+        padding: 74px 14px 10px 14px;
+    }
+
+    .search-form__input {
+        max-width: 238px;
+        padding: 16px 15px;
+    }
 }

@@ -59,3 +59,47 @@
 .footer__link-item:last-child {
     margin: 0 0 0 20px;
 }
+
+@media screen and (max-width: 1000px) {
+    .footer {
+        padding: 0 30px 20px 30px;
+        background-color: #FFFFFF;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .footer {
+        padding: 0 10px 10px 10px;
+    }
+
+    .footer__title {
+        font-size: 0.75rem;
+        line-height: 1.25;
+        margin-top: 43px;
+    }
+
+    .footer__links-block {
+        flex-direction: column-reverse;
+        padding: 30px 0 0 0;
+    }
+
+    .footer__copyright {
+        color: #A0A0A0;
+        margin-top: 30px;
+        font-size: 0.75rem;
+        line-height: 1.25;
+    }
+
+    .footer__links-list {
+        flex-direction: column;
+    }
+
+    .footer__link {
+        font-size: 0.75rem;
+        line-height: 1.25;
+    }
+
+    .footer__link-item:last-child {
+        margin: 12px 0 0 0;
+    }
+}

@@ -14,10 +14,19 @@
     font-size: 1.375rem;
     line-height: 1.22;
     font-weight: 400;
+    letter-spacing: -0.04rem;
 }
 
 @media screen and (max-width: 1290px){
     .block-title {
         justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .block-title__title {
+        font-size: 1.125rem;
+        line-height: 1.21;
+        margin: 0 0 28px 0;
     }
 }

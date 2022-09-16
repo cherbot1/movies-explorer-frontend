@@ -1,9 +1,9 @@
 import React from 'react';
 import './AboutProject.css';
 
-function AboutProject ({children}) {
+function AboutProject ({children, aboutRef}) {
     return (
-        <section className="about-project">
+        <section className="about-project" ref={aboutRef}>
             {children}
             <ul className="about-project__text-list text-list">
                 <li className="text-list__item">
