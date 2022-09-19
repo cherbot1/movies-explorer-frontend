@@ -2,13 +2,23 @@ import React from 'react';
 import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
-function Movies() {
+function Movies({loggedIn}) {
     return (
-        <section className="movies">
-            <SearchForm />
-            <MoviesCardList />
-        </section>
+        <>
+            <Header
+                loggedIn={loggedIn}
+            />
+            <section className="movies">
+
+                <SearchForm />
+                <MoviesCardList />
+
+            </section>
+            <Footer />
+        </>
     );
 }
 

@@ -1,15 +1,14 @@
 import React from 'react';
-import Header from '../Header/Header'
 import './App.css';
 import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
 import Movies from "../Movies/Movies";
 import { Route, Switch, useHistory } from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
 import Login from '../Login/Login';
-import NotFound from '../NotFound/NotFound'
+import NotFound from '../NotFound/NotFound';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
     const [loggedIn, setIsLoggedIn] = React.useState(false);
@@ -34,37 +33,28 @@ function App() {
 
             <Switch>
                 <Route exact path='/'>
-                    <Header
+                    <Main
                         loggedIn={loggedIn}
                     />
-                    <Main />
-                    <Footer />
                 </Route>
 
                 <Route path='/movies'>
-                    <Header
+                    <Movies
                         loggedIn={loggedIn}
                     />
-                    <Movies />
-                    <Footer />
                 </Route>
 
                 <Route path='/saved-movies'>
-                    <Header
+                    <SavedMovies
                         loggedIn={loggedIn}
                     />
-                    <SavedMovies />
-                    <Footer />
                 </Route>
 
                 <Route path='/profile'>
-                    <Header
-                        loggedIn={loggedIn}
-                    />
                     <Profile
+                        loggedIn={loggedIn}
                         logOut={logOut}
-                    >
-                    </ Profile>
+                    />
                 </Route>
 
                 <Route path='/signup'>
@@ -78,6 +68,7 @@ function App() {
                         login={login}
                     />
                 </Route>
+
                 <Route path='/*'>
                     <NotFound />
                 </Route>

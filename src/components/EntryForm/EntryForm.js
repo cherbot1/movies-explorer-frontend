@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Route } from "react-router-dom";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 import './EntryForm.css';
 
 function EntryForm({name, title, onSubmit, children, buttonText}) {
