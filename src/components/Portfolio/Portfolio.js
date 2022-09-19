@@ -12,6 +12,7 @@ function Portfolio () {
                 <li className="portfolio__list-item">
                     <a className="portfolio__link"
                        href={'https://github.com/cherbot1'}
+                       target={"_blank"}
                     >
                         <h4 className="portfolio__li-title">
                             Статичный сайт
@@ -25,6 +26,7 @@ function Portfolio () {
                 <li className="portfolio__list-item">
                     <a className="portfolio__link"
                        href={'https://github.com/cherbot1'}
+                       target={"_blank"}
                     >
                         <h4 className="portfolio__li-title">
                             Адаптивный сайт
@@ -38,6 +40,7 @@ function Portfolio () {
                 <li className="portfolio__list-item">
                     <a className="portfolio__link portfolio__link_no-border"
                        href={'https://github.com/cherbot1'}
+                       target={"_blank"}
                     >
                         <h4 className="portfolio__li-title">
                             Одностраничное приложение
