@@ -3,8 +3,7 @@ import { Link, Route } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import './EntryForm.css';
 
-function EntryForm({name, title, onSubmit, children, buttonText}) {
-
+function EntryForm({name, title, onSubmit, children, buttonText, isValid, submitButtonGreen}) {
     return (
         <section className={'entry'}>
             <Link to='/'>
@@ -20,7 +19,8 @@ function EntryForm({name, title, onSubmit, children, buttonText}) {
                 <button
                     type="submit"
                     aria-label={`${buttonText}`}
-                    className={`entry__save-button entry-${name}__save-button`}
+                    className={`entry__save-button entry-${name}__save-button ${submitButtonGreen ? '' : 'entry__save-button_disabled'}`}
+                    disabled={!isValid}
                 >{buttonText}</button>
             </form>
             <Route path="/signup">
@@ -36,7 +36,7 @@ function EntryForm({name, title, onSubmit, children, buttonText}) {
                     to='/signup'
                     className={`entry__link`}
                 >
-                   Ещё не зарегистрированы? <span className={'entry__link-text'}>Регистрация</span>
+                    Ещё не зарегистрированы? <span className={'entry__link-text'}>Регистрация</span>
                 </Link>
             </Route>
         </section>

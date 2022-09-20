@@ -3,15 +3,20 @@ import EntryForm from "../EntryForm/EntryForm";
 import './Login.css';
 
 function Login({login}) {
-    const [userData, setUserData] = React.useState({ password: '', email: ''});
+    const [loginValues, setLoginValues] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+    const [isValid, setIsValid] = React.useState(false);
+    const [submitButtonGreen, setSubmitButtonGreen] = React.useState(true);
 
-    function handleChange(e) {
-        const { name, value } = e.target;
+    const handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
 
-        setUserData({
-            ...userData,
-            [name]: value
-        });
+        setLoginValues({...loginValues, [name]: value});
+        setErrors({...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
+        setSubmitButtonGreen(isValid);
     };
 
     return (
@@ -20,6 +25,8 @@ function Login({login}) {
             title = 'Рады видеть'
             buttonText = 'Войти'
             onSubmit={login}
+            isValid={isValid}
+            submitButtonGreen={submitButtonGreen}
         >
             <label htmlFor={'login-email-input'} className="entry__label">E-mail</label>
             <input
@@ -31,14 +38,15 @@ function Login({login}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={userData.email}
+                value={loginValues.email}
+                required
             />
             <span
                 id="email-input-error"
-                className="email-input-error entry__input-error entry__input-error_hidden"
+                className="email-input-error entry__input-error"
             >
-                Что-то пошло не так...
-            </span>
+                    {errors.email}
+                </span>
             <label htmlFor={'login-password-input'} className="entry__label">Пароль</label>
             <input
                 type="password"
@@ -47,14 +55,15 @@ function Login({login}) {
                 className="entry__input entry-register__input entry-register__input_password"
                 placeholder="Пароль"
                 onChange={handleChange}
-                value={userData.password}
+                value={loginValues.password}
+                required
             />
             <span
                 id='password-input-error'
-                className="password-input-error entry__input-error entry__input-error_hidden"
+                className="password-input-error entry__input-error"
             >
-                Что-то пошло не так...
-            </span>
+                    {errors.password}
+                </span>
         </EntryForm>
     );
 }

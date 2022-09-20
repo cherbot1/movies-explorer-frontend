@@ -3,16 +3,21 @@ import EntryForm from "../EntryForm/EntryForm";
 import './Register.css';
 
 function Register({register}) {
-    const [userData, setUserData] = React.useState({ name: '', email: '', password: 'ergergerge' });
+    const [registerValues, setRegisterValues] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+    const [isValid, setIsValid] = React.useState(false);
+    const [submitButtonGreen, setSubmitButtonGreen] = React.useState(true);
 
-    function handleChange(e) {
-        const { name, value } = e.target;
+    const handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
 
-        setUserData({
-            ...userData,
-            [name]: value
-        });
-    }
+        setRegisterValues({...registerValues, [name]: value});
+        setErrors({...errors, [name]: target.validationMessage });
+        setIsValid(target.closest("form").checkValidity());
+        setSubmitButtonGreen(isValid);
+    };
 
     return (
         <EntryForm
@@ -20,6 +25,7 @@ function Register({register}) {
             title = 'Добро пожаловать!'
             buttonText = 'Зарегистрироваться'
             onSubmit={register}
+            submitButtonGreen={submitButtonGreen}
         >
             <label htmlFor={'register-name-input'} className="entry__label">Имя</label>
             <input
@@ -31,13 +37,14 @@ function Register({register}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={userData.name}
+                value={registerValues.name}
+                required
             />
             <span
                 id="email-input-error"
-                className="name-input-error entry__input-error entry__input-error_hidden"
+                className="name-input-error entry__input-error"
             >
-                Что-то пошло не так...
+                {errors.name}
             </span>
             <label htmlFor={'register-name-input'} className="entry__label">E-mail</label>
             <input
@@ -49,29 +56,32 @@ function Register({register}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={userData.email}
+                value={registerValues.email}
+                required
             />
             <span
                 id="email-input-error"
-                className="email-input-error entry__input-error entry__input-error_hidden"
+                className="email-input-error entry__input-error"
             >
-                Что-то пошло не так...
+                {errors.email}
             </span>
             <label htmlFor={'register-name-input'} className="entry__label">Пароль</label>
             <input
                 type="password"
                 name='password'
                 id='password-input'
-                className="entry__input entry-register__input entry-register__input_password entry__input_error"
+                className="entry__input entry-register__input entry-register__input_password"
                 placeholder="Ваш пароль"
+                minLength="4"
                 onChange={handleChange}
-                value={userData.password}
+                value={registerValues.password}
+                required
             />
             <span
                 id='password-input-error'
                 className="password-input-error entry__input-error"
             >
-                Что-то пошло не так...
+                {errors.password}
             </span>
         </EntryForm>
     );
