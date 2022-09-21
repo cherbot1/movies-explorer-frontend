@@ -19,12 +19,17 @@ function Login({login}) {
         setSubmitButtonGreen(isValid);
     };
 
+    function onSubmit(event) {
+        event.preventDefault();
+        login(loginValues);
+    }
+
     return (
         <EntryForm
             name = 'login'
             title = 'Рады видеть'
             buttonText = 'Войти'
-            onSubmit={login}
+            onSubmit={onSubmit}
             isValid={isValid}
             submitButtonGreen={submitButtonGreen}
         >
@@ -38,7 +43,6 @@ function Login({login}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={loginValues.email}
                 required
             />
             <span
@@ -55,8 +59,8 @@ function Login({login}) {
                 className="entry__input entry-register__input entry-register__input_password"
                 placeholder="Пароль"
                 onChange={handleChange}
-                value={loginValues.password}
                 required
+                autoComplete="new-password"
             />
             <span
                 id='password-input-error'

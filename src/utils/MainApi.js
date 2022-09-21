@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://cherbot1.movies.nomoredomains.sbs/';
+export const BASE_URL = 'https://cherbot1.movies.nomoredomains.sbs';
 
 const checkResponse = (res) => {
     if (res.ok) {
@@ -8,7 +8,7 @@ const checkResponse = (res) => {
     }
 }
 
-export const register = (name, password, email) => {
+export const register = ({name, password, email}) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
@@ -20,7 +20,7 @@ export const register = (name, password, email) => {
         .then(checkResponse)
 };
 
-export const authorize = (password, email) => {
+export const authorize = ({password, email}) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
@@ -48,8 +48,9 @@ export const changeUserInfo = (data, token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'PATCH',
         headers: {
+            'Accept': 'application/json',
+            "Content-Type": 'application/json',
             authorization: "Bearer " + token,
-            "Content-Type": 'application/json'
         },
         body: JSON.stringify({
             name: data.name,

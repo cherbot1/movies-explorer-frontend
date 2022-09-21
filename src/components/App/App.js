@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Main from '../Main/Main';
 import Movies from "../Movies/Movies";
-import { Route, Switch, useHistory } from "react-router-dom";
+import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Register from "../Register/Register";
@@ -21,19 +21,18 @@ import {
 } from "../../utils/MainApi";
 
 function App() {
-    const [loggedIn, setIsLoggedIn] = React.useState(true);
+    const [loggedIn, setIsLoggedIn] = React.useState(false);
     const [registered, setRegistered] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
     const [apiMovies, setApiMovies] = React.useState([]);
     const [userMovies, setUserMovies] = React.useState([]);
-    const [token, setToken] = React.useState('');
     const history = useHistory();
+    const location = useLocation();
 
     function handleLogin({password, email}) {
-        authorize(password, email).then((data) => {
+        authorize({password, email}).then((data) => {
             if (data) {
                 localStorage.setItem("jwt", data.token);
-                setToken(data.token);
                 setIsLoggedIn(true);
                 history.push('/movies');
             }
@@ -52,7 +51,10 @@ function App() {
             getUserInfo(jwt).then((user) => {
                 if (user) {
                     setIsLoggedIn(true);
-                    history.push('/');
+                    setCurrentUser({
+                        name: user.data.name,
+                        email: user.data.email,
+                    });
                 }
             })
                 .catch((err) => {
@@ -65,8 +67,30 @@ function App() {
         checkToken();
     }, [])
 
+    React.useEffect(() => {
+        const jwt = localStorage.getItem('jwt');
+
+        if (loggedIn) {
+            getUserInfo(jwt).then((user) => {
+                if (user) {
+                    setIsLoggedIn(true);
+                    setCurrentUser({
+                        name: user.data.name,
+                        email: user.data.email,
+                    });
+                    if (location.pathname === '/signin') {
+                        history.push('/movies')
+                    }
+                }
+            })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    }, [loggedIn])
+
     function handleRegister({name, password, email}) {
-        register(name, password, email).then((res) => {
+        register({name, password, email}).then((res) => {
             if (res) {
                 setRegistered(true);
                 history.push('/signin');
@@ -76,18 +100,27 @@ function App() {
                 setRegistered(false);
                 console.log(err);
             })
-            .finally(() => {
-                setIsInfoTooltipOpen(true);
-            })
+    }
+
+    function handleUpdateUser(newData) {
+        const jwt = localStorage.getItem('jwt');
+
+        changeUserInfo(newData, jwt).then((user) => {
+            setCurrentUser({
+                name: user.data.name,
+                email: user.data.email,
+            });
+        })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     function logOut() {
         setIsLoggedIn(false);
+        setCurrentUser({});
+        localStorage.removeItem("jwt");
         history.push('/');
-    }
-
-    function goToSignIn() {
-        history.push('/signin');
     }
 
     return (
@@ -117,17 +150,19 @@ function App() {
                         exact path = '/profile'
                         component={Profile}
                         loggedIn={loggedIn}
+                        logOut={logOut}
+                        changeInfo={handleUpdateUser}
                     />
 
                     <Route path='/signup'>
                         <Register
-
+                            register={handleRegister}
                         />
                     </Route>
 
                     <Route path='/signin'>
                         <Login
-
+                            login={handleLogin}
                         />
                     </Route>
 

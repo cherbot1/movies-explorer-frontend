@@ -19,13 +19,19 @@ function Register({register}) {
         setSubmitButtonGreen(isValid);
     };
 
+    function onSubmit(event) {
+        event.preventDefault();
+        register(registerValues);
+    }
+
     return (
         <EntryForm
             name = 'register'
             title = 'Добро пожаловать!'
             buttonText = 'Зарегистрироваться'
-            onSubmit={register}
+            onSubmit={onSubmit}
             submitButtonGreen={submitButtonGreen}
+            isValid={isValid}
         >
             <label htmlFor={'register-name-input'} className="entry__label">Имя</label>
             <input
@@ -37,7 +43,6 @@ function Register({register}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={registerValues.name}
                 required
             />
             <span
@@ -56,7 +61,6 @@ function Register({register}) {
                 minLength="2"
                 maxLength="30"
                 onChange={handleChange}
-                value={registerValues.email}
                 required
             />
             <span
@@ -74,7 +78,6 @@ function Register({register}) {
                 placeholder="Ваш пароль"
                 minLength="4"
                 onChange={handleChange}
-                value={registerValues.password}
                 required
             />
             <span
