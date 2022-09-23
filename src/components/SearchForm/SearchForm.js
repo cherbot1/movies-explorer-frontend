@@ -3,16 +3,29 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import searchIcon from '../../images/search-icon.svg';
 
-function SearchForm() {
+function SearchForm({ searchRequest, setSearchRequest, checkBox, handleShortMovie, submitSearchForm }) {
+
+    function onSubmit(event) {
+        event.preventDefault();
+        submitSearchForm();
+    }
+
+    function handleSearchRequest(event) {
+        setSearchRequest(event.target.value);
+    }
+
     return (
         <form
             className={"search-form"}
             name="movies-search-form"
+            onSubmit={onSubmit}
         >
             <div className={"search-form__search-wrapper"}>
                 <input
                     className="search-form__input"
                     placeholder="Фильм"
+                    onChange={handleSearchRequest}
+                    value={searchRequest}
                     required
                 />
                 <button
@@ -27,7 +40,10 @@ function SearchForm() {
                 </button>
             </div>
 
-            <FilterCheckbox />
+            <FilterCheckbox
+                checkBox={checkBox}
+                setShortMovie={handleShortMovie}
+            />
         </form>
     );
 }

@@ -24,8 +24,6 @@ function App() {
     const [loggedIn, setIsLoggedIn] = React.useState(false);
     const [registered, setRegistered] = React.useState(false);
     const [currentUser, setCurrentUser] = React.useState({});
-    const [apiMovies, setApiMovies] = React.useState([]);
-    const [userMovies, setUserMovies] = React.useState([]);
     const history = useHistory();
     const location = useLocation();
 
