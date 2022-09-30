@@ -3,15 +3,15 @@ import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import searchIcon from '../../images/search-icon.svg';
 
-function SearchForm({ searchRequest, setSearchRequest, checkBox, handleShortMovie, submitSearchForm }) {
+function SearchForm({ searchNameMovie, setSearchNameMovie, shortMovie, setShortMovie, showMovies }) {
 
     function onSubmit(event) {
         event.preventDefault();
-        submitSearchForm();
+        showMovies();
     }
 
     function handleSearchRequest(event) {
-        setSearchRequest(event.target.value);
+        setSearchNameMovie(event.target.value);
     }
 
     return (
@@ -25,7 +25,7 @@ function SearchForm({ searchRequest, setSearchRequest, checkBox, handleShortMovi
                     className="search-form__input"
                     placeholder="Фильм"
                     onChange={handleSearchRequest}
-                    value={searchRequest}
+                    value={searchNameMovie}
                     required
                 />
                 <button
@@ -41,8 +41,8 @@ function SearchForm({ searchRequest, setSearchRequest, checkBox, handleShortMovi
             </div>
 
             <FilterCheckbox
-                checkBox={checkBox}
-                setShortMovie={handleShortMovie}
+                checkBox={shortMovie}
+                handleShortMovie={setShortMovie}
             />
         </form>
     );

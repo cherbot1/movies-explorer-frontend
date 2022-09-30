@@ -136,6 +136,7 @@ function App() {
                         exact path = '/movies'
                         component={Movies}
                         loggedIn={loggedIn}
+                        getUserMovies={getUserMovies}
                     />
 
                     <ProtectedRoute
